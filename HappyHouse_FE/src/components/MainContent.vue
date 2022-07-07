@@ -1,0 +1,148 @@
+<template>
+  <div>
+    <section class="index_img_sec">
+      <div class="background_box">
+        <img src="@/assets/paint.jpeg" class="background_img" />
+        <div class="black_box">
+          <div class="title_happy">
+            <img src="@/assets/title2.png" alt="" class="title_happy_img" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <router-view />
+  </div>
+</template>
+
+<script>
+// import HeaderNav from "@/components/HeaderNav.vue";
+
+export default {
+  name: "mainContent",
+  // components: { HeaderNav },
+};
+</script>
+
+<style>
+body {
+  margin: auto;
+  max-width: 1600px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+  list-style: none;
+  font-family: sans-serif;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* 헤더 부분 */
+.header {
+  position: fixed;
+  margin: auto;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  background: #ffffff3a;
+  max-width: 1600px;
+}
+
+.header-nav {
+  float: right;
+}
+
+.header_nav_menuitem {
+  display: inline-block;
+  margin-right: 30px;
+  line-height: 80px;
+}
+
+.logo_img {
+  margin: 10px 30px;
+  height: 80px;
+}
+
+/* 헤더부분 끝 */
+
+/* 이미지 꾸미는 부분 */
+.index_img_sec {
+  position: relative;
+}
+
+.background_box {
+  width: 100%;
+  /* height: max-content; */
+  max-width: 1600px;
+  position: absolute;
+}
+
+.background_img {
+  width: 100%;
+  height: 100%;
+}
+
+.black_box {
+  position: absolute;
+  /* background-color: rgba(0, 0, 0, 0.555); */
+  width: 100%;
+  left: 0px;
+  top: 0px;
+}
+
+.title_happy {
+  margin: 3% 6%;
+  position: relative;
+  text-align: center;
+}
+
+.title_happy_img {
+  margin-top: 20%;
+  width: 100%;
+
+  animation: fadein 1.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 15px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+/* 이미지 꾸미는 부분 끝 */
+
+.map_title {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.map_area {
+  margin-top: 50px;
+  clear: both;
+  width: 100%;
+  height: 400px;
+  background-color: rgb(102, 102, 102);
+  margin-bottom: 100px;
+}
+
+.nav_menu_select li {
+  display: inline;
+  margin: 0 5%;
+  padding: 0;
+  color: rgb(207, 202, 190);
+
+  animation: fadein 1.5s;
+}
+</style>
