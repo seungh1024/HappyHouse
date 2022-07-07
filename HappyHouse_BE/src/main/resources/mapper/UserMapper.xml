@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.UserMapper">
+	<insert id="regist"
+		parameterType="com.ssafy.happyhouse.model.dto.User">
+		INSERT INTO USER_TB(email, password, NAME) VALUES(#{email}, #{password},
+		#{name})
+	</insert>
+
+	<select id="login"
+		resultType="com.ssafy.happyhouse.model.dto.UserInfo">
+		SELECT ID, PW, NAME
+		FROM USERINFO
+		WHERE ID = #{id} and PW =#{pw}
+
+	</select>
+
+	<update id="update">
+		UPDATE USER_tb
+		SET password=#{password}, NAME=#{name}
+		WHERE
+		email=#{email}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM user_tb
+		WHERE
+		email=#{email}
+
+	</delete>
+
+	<select id="emailCheck" parameterType="String" resultType="int">
+		SELECT
+		COUNT(email)
+		FROM USER_tb
+		WHERE email =#{email}
+	</select>
+
+	<select id="info"
+		resultType="com.ssafy.happyhouse.model.dto.User">
+		SELECT idx, email, name, password, role
+		FROM user_tb
+		WHERE email = #{email}
+	</select>
+	
+	<select id="findPw"
+		resultType="com.ssafy.happyhouse.model.dto.User">
+		SELECT idx, email, name, password, role
+		FROM user_tb
+		WHERE email = #{email} and NAME =
+		#{name}
+	</select>
+	
+	<select id="getInfo" resultType="com.ssafy.happyhouse.model.dto.User">
+		select idx, email, name, password, role
+		from user_tb
+		where email = (select user_email from refresh_token where idx = #{idx});
+	</select>
+
+</mapper>

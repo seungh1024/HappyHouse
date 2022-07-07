@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.CodeMapper">
+
+	<select id="sidoList" resultType="SidoCode">
+		SELECT SIDOCODE, SIDONAME
+		FROM SIDOCODE
+	</select>
+	
+	<select id="gugunList" resultType="GugunCode" parameterType="String">
+		SELECT GUGUNCODE, GUGUNNAME
+		FROM GUGUNCODE
+		WHERE GUGUNCODE LIKE #{code}
+	</select>
+	
+	<select id="dongList" resultType="DongCode" parameterType="String">
+		SELECT DONGCODE,SIDONAME,GUGUNNAME,DONGNAME
+		FROM DONGCODE
+		WHERE DONGCODE LIKE #{gugunCode}
+	</select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.HouseMapper">
+
+	<select id="houseInfo" resultType="HouseInfo" parameterType="String">
+		SELECT APTCODE, APARTMENTNAME, DONGCODE, DONG, BUILDYEAR, JIBUN, LAT,LNG
+		FROM HOUSEINFO
+		WHERE DONGCODE = #{dongCode}
+	</select>
+	
+	<select id="searchHouse" resultType="HouseInfo" parameterType="String">
+		SELECT APTCODE, APARTMENTNAME, DONGCODE,DONG, BUILDYEAR, JIBUN, LAT,LNG
+		FROM HOUSEINFO
+		WHERE DONGCODE = #{dongCode} AND APARTMENTNAME LIKE #{aptName}
+	</select>
+	
+	<select id="allInfo" resultType="HouseInfo" >
+		SELECT APTCODE, APARTMENTNAME, DONGCODE, DONG, BUILDYEAR, JIBUN, LAT,LNG
+		FROM HOUSEINFO
+		WHERE APARTMENTNAME LIKE #{aptName}
+		OR DONG LIKE #{"%"+aptName+"%"}
+		
+	</select>
+	
+	<select id="dealList" resultType="HouseDeal" parameterType = "long">
+		SELECT NO,APTCODE,DEALAMOUNT,DEALYEAR,DEALMONTH,DEALDAY,AREA,FLOOR
+		FROM HOUSEDEAL
+		WHERE APTCODE = #{aptCode}
+		AND
+		CANCELDEALTYPE != "O"
+	</select>
+	
+</mapper>

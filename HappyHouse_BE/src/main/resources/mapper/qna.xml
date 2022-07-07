@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.QnaMapper">
+
+	<!-- 게시글 전체 조회 -->
+	<select id="selectQna" resultType="com.ssafy.happyhouse.model.dto.Qna">
+		select articleno, userid, subject, content, hit, regtime, name
+		from qna , user_tb
+		where qna.userid = user_tb.idx
+		order by articleno desc
+		limit #{start}, #{end}
+	</select>
+	
+	<!-- 게시글 상세 조회 -->
+	<select id="selectQnaByNo" resultType="com.ssafy.happyhouse.model.dto.Qna">
+		select articleno, subject, userid, content, hit, regtime, name
+		from qna inner join user_tb
+		on qna.userid = user_tb.idx
+		where articleno = #{articleno}
+	</select>
+
+	<!-- 게시글 등록 -->
+	<insert id="insertQna" parameterType="com.ssafy.happyhouse.model.dto.Qna">
+		insert into qna(
+			subject, userid, content
+		) values (
+			#{subject}, #{userid}, #{content}
+		)
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateQna" parameterType="com.ssafy.happyhouse.model.dto.Qna">
+		update qna 
+		   set subject = #{subject}, 
+		   	   <!-- userid = #{userid},  -->
+		   	   content = #{content}
+		 where articleno = #{articleno}
+	</update>
+
+	<delete id="deleteComment" parameterType = "int">
+		DELETE FROM COMMENTS
+		WHERE
+		ARTICLENO = #{articleno}
+	
+	</delete>
+	<!-- 게시글 삭제 -->
+	<delete id="deleteQna" parameterType="int">
+		delete 
+		from qna 
+		where articleno = #{articleno}
+	</delete>
+	
+	<select id="getNumberofQna" resultType="int">
+		select count(*)
+		from qna
+	</select>
+
+</mapper>
+
